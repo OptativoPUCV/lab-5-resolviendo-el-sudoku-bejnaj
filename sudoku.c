@@ -44,8 +44,6 @@ void print_node(Node* n){
 }
 
 int is_valid(Node* n){
-  int i, j;
-
 }
 
 
@@ -63,7 +61,6 @@ int is_final(Node* n){
     }
     return 1;
   }
-  return 0;
 }
 
 Node* DFS(Node* initial, int* cont){
