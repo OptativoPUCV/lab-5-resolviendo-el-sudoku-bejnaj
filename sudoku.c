@@ -44,23 +44,24 @@ void print_node(Node* n){
 }
 
 int is_valid(Node* n){
-  for (int i=0;i<9;i++){
-    for (int j=0;j<9;j++){
-      if (n->sudo[i][j] < 0 || n->sudo[i][j] > 9){
-        int copiaI = i;
-        int copiaJ = j;
-        for (int k = 0; k < 9; k++) {
-          if ((k != j && n->sudo[i][k] == n->sudo[i][j]) || (k != i && n->sudo[k][j] == n->sudo[i][j])) return 0;
-              int subcuadro = (i / 3) * 3 + (j / 3);
-              for(int p = 0; p < 9;p++){
-                  int RevisarI = 3*(subcuadro/3) + (p/3) ;
-                  int RevisarK = 3*(subcuadro%3) + (p%3) ;
-              }
-        }
+  for (int i = 0; i < 9; i++) {
+    for (int j = 0; j < 9; j++) {
+      int val = n->sudo[i][j];
+      if (val != 0) continue;
+      for (int k = 0; k < 9; k++) {
+        if ((k != j && n->sudo[i][k] == val) || (k != i && n->sudo[k][j] == val))
+          return 0;
       }
-      return 0;
+      int subcuadro = (i / 3) * 3 + (j / 3);
+      for (int p = 0; p < 9; p++) {
+        int RevisarI = 3 * (subcuadro / 3) + (p / 3);
+        int RevisarJ = 3 * (subcuadro % 3) + (p % 3);
+        if ((RevisarI != i || RevisarJ != j) && n->sudo[RevisarI][RevisarJ] == val)
+          return 0;
+      }
     }
   }
+  return 1;
 }
 
 
