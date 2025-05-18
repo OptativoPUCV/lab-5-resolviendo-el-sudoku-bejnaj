@@ -44,12 +44,52 @@ void print_node(Node* n){
 }
 
 int is_valid(Node* n){
+  for (int i=0;i<9;i++){
+    for (int j=0;j<9;j++){
+      if (n->sudo[i][j] < 0 || n->sudo[i][j] > 9){
+        int copiaI = i;
+        int copiaJ = j;
+        while (copiaI < 9){
+          if (n->sudo[copiaI][copiaJ] == n->sudo[i][j]) return 0;
+          copiaI++;
+        }
+        while (copiaI > -1 || n->sudo[copiaI][j] == n->sudo[i][j]){
+          if (n->sudo[copiaI][j] == n->sudo[i][j]) return 0;
+          copiaI++;
+        }
+        while (copiaJ < 9){
+          if (n->sudo[i][copiaJ] == n->sudo[i][j]) return 0;
+          copiaJ++;
+        }
+        while (copiaJ > -1 || n->sudo[i][copiaJ] == n->sudo[i][j]){
+          if (n->sudo[j][copiaJ] == n->sudo[j][copiaJ]) return 0;
+          copiaJ++;
+        }
+      }
+      }
+      
+        return 0;
+    }
 }
 
 
 List* get_adj_nodes(Node* n){
     List* list=createList();
-    return list;
+    for (int i=0;i<9;i++){
+      for (int j=0;j<9;j++){
+        if (n->sudo[i][j]==0){
+          for (int k=1;k<=9;k++){
+            Node* posibleNodo = copy(n);
+            posibleNodo->sudo[i][j]=k;
+            if (is_valid(posibleNodo)){
+              pushBack(list, posibleNodo);
+            }
+          }
+          return list;
+        }
+      }
+    }
+    return NULL;
 }
 
 
