@@ -12,3 +12,29 @@ sudoku.c:54:1: error: control reaches end of non-void function [-Werror=return-t
       | ^
 cc1.exe: all warnings being treated as errors
 3f0e54c
+Sun, May 18, 2025  5:42:11 PM: 
+ sudoku.c | 15 ++++++++-------
+ 1 file changed, 8 insertions(+), 7 deletions(-)
+Compilation failed
+In file included from test.c:5:
+sudoku.c: In function 'is_valid':
+sudoku.c:47:10: error: unused variable 'j' [-Werror=unused-variable]
+   47 |   int i, j;
+      |          ^
+sudoku.c:47:7: error: unused variable 'i' [-Werror=unused-variable]
+   47 |   int i, j;
+      |       ^
+test.c: At top level:
+test.c:7:8: error: '_strdup' redeclared without dllimport attribute: previous dllimport ignored [-Werror=attributes]
+    7 | char * _strdup(const char * str) {
+      |        ^~~~~~~
+sudoku.c: In function 'is_valid':
+sudoku.c:49:1: error: control reaches end of non-void function [-Werror=return-type]
+   49 | }
+      | ^
+sudoku.c: In function 'is_final':
+sudoku.c:66:1: error: control reaches end of non-void function [-Werror=return-type]
+   66 | }
+      | ^
+cc1.exe: all warnings being treated as errors
+5474077
