@@ -51,9 +51,13 @@ int is_valid(Node* n){
         int copiaJ = j;
         for (int k = 0; k < 9; k++) {
           if ((k != j && n->sudo[i][k] == n->sudo[i][j]) || (k != i && n->sudo[k][j] == n->sudo[i][j])) return 0;
+              int subcuadro = (i / 3) * 3 + (j / 3);
+              for(int p = 0; p < 9;p++){
+                  int RevisarI = 3*(subcuadro/3) + (p/3) ;
+                  int RevisarK = 3*(subcuadro%3) + (p%3) ;
+              }
         }
       }
-      
       return 0;
     }
   }
@@ -68,9 +72,7 @@ List* get_adj_nodes(Node* n){
           for (int k=1;k<=9;k++){
             Node* posibleNodo = copy(n);
             posibleNodo->sudo[i][j] = k;
-            if (is_valid(posibleNodo)){
-              pushBack(list, posibleNodo);
-            }
+            if (is_valid(posibleNodo)) pushBack(list, posibleNodo);
           }
           return list;
         }
