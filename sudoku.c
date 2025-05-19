@@ -94,10 +94,28 @@ int is_final(Node* n){
 }
 
 Node* DFS(Node* initial, int* cont){
+  Stack* stack = createStack();
+  push(stack, initial);
+  while (!is_empty(stack)){
+    Node* n = top(stack);
+    pop(stack);
+    (*cont)++;
+    if (is_final(n)){
+      return n;
+    }
+    List* adj = get_adj_nodes(n);
+    Node *node = first(adj);
+    while (node != NULL){
+      Node* newNode = (Node*) node;
+      if (is_valid(newNode)){
+        push(stack, newNode);
+      }
+      node = next(adj);
+    }
+    clean(adj);
+  }
   return NULL;
 }
-
-
 
 /*
 int main( int argc, char *argv[] ){
